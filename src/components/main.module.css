@@ -1,0 +1,29 @@
+.post {
+  flex-basis: 30.33% !important;
+  margin: 1rem 0 !important;
+  box-shadow: 2px 2px 3px rgb(31, 31, 31);
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+.post h2 {
+  font-size: 1rem;
+  font-weight: 900;
+  margin-bottom: 10px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #1976d2;
+}
+
+.post p {
+  color: rgb(56, 56, 56);
+}
+
+.pagination {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 1rem;
+  left: 0;
+}

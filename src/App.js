@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import LogIn from "./components/LogIn";
+import MainPage from "./components/MainPage";
+
+import { useSelector } from "react-redux";
+import { Redirect, Route, Router, Switch } from "react-router";
+import { BrowserRouter } from "react-router-dom";
+import Layout from "./components/Layout";
 
 function App() {
+  const login = useSelector((state) => state.auth.authenticated);
+
+  console.log("LLL", login);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Layout />
+      <h1>start ramand</h1>
+      <BrowserRouter>
+        <Switch>
+          <Route path="/login">
+            <LogIn />
+          </Route>
+          <Route path="/">
+            {login ? <MainPage /> : <Redirect to="/login" />}
+          </Route>
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }
