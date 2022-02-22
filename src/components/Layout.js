@@ -8,18 +8,21 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import Switch from "@mui/material/Switch";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormGroup from "@mui/material/FormGroup";
-import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../store/auth";
 import { Grid, TextField } from "@mui/material";
 
 import classes from "./layout.module.css";
+import { postsActions } from "../store/posts";
 
 const Layout = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const auth = useSelector((state) => state.auth.authenticated);
   const userName = useSelector((state) => state.auth.userName);
+
+  const searchDetails = useSelector((state) => state.posts.searchList);
+
   const dispatch = useDispatch();
 
   const logoutHandler = () => {
@@ -37,7 +40,7 @@ const Layout = () => {
   const searchHandler = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log(data.get("search"));
+    dispatch(postsActions.searchHandler(data.get("search")));
   };
 
   return (
@@ -58,24 +61,40 @@ const Layout = () => {
       )}
       <AppBar position="static">
         <Grid container sx={{ p: 2 }}>
-          <Grid item container justifyContent="flex-start" xs={6}>
-            <Box
-              component="form"
-              className={classes.formGroup}
-              onSubmit={searchHandler}
+          {auth && (
+            <Grid
+              item
+              container
+              justifyContent="flex-start"
+              alignItems="center"
+              xs={6}
             >
-              <IconButton>
-                <SearchIcon />
-              </IconButton>
-              <TextField
-                placeholder="Search"
-                name="search"
-                id="search"
-                variant="outlined"
-                className={classes.search}
-              />
-            </Box>
-          </Grid>
+              <Box
+                component="form"
+                className={classes.formGroup}
+                onSubmit={searchHandler}
+              >
+                <IconButton type="submit">
+                  <SearchIcon />
+                </IconButton>
+                <TextField
+                  placeholder="Search"
+                  name="search"
+                  id="search"
+                  variant="outlined"
+                  className={classes.search}
+                />
+              </Box>
+              {searchDetails.length > 0 && (
+                <Typography
+                  variant="overline"
+                  sx={{ ml: 1, textDecoration: "underline" }}
+                >
+                  Found {searchDetails.length} posts
+                </Typography>
+              )}
+            </Grid>
+          )}
 
           {auth && (
             <Grid

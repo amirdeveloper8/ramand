@@ -3,14 +3,13 @@ import LogIn from "./components/LogIn";
 import MainPage from "./components/MainPage";
 
 import { useSelector } from "react-redux";
-import { Redirect, Route, Router, Switch } from "react-router";
+import { Redirect, Route, Switch } from "react-router";
 import { BrowserRouter } from "react-router-dom";
 import Layout from "./components/Layout";
 
 function App() {
   const login = useSelector((state) => state.auth.authenticated);
 
-  console.log("LLL", login);
   return (
     <div className="App">
       <Layout />

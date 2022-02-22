@@ -26,11 +26,6 @@ const LogIn = () => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-
     const email = data.get("email");
 
     dispatch(authActions.login({ email }));

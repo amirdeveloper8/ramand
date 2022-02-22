@@ -4,6 +4,12 @@
   box-shadow: 2px 2px 3px rgb(31, 31, 31);
   padding: 1rem;
   border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.post:hover {
+  transform: scale(1.1);
 }
 
 .post h2 {

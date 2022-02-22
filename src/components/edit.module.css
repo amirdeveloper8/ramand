@@ -1,0 +1,27 @@
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80vw;
+  background-color: white;
+  border: 2px solid #000;
+  box-shadow: 24;
+  padding: 2rem;
+  border-color: #1976d2;
+  border-radius: 8px;
+}
+
+.grid {
+  background-color: #1976d275;
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  padding: 2rem;
+  border-radius: 4px;
+}
+
+.stack {
+  width: 100%;
+  margin: auto;
+}

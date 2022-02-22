@@ -8,7 +8,6 @@ const authSlice = createSlice({
       const user = action.payload;
       state.userName = user.email;
       state.authenticated = true;
-      console.log(state.authenticated, "sss");
     },
     logout(state) {
       state.authenticated = false;
