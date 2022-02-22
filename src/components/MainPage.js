@@ -36,7 +36,7 @@ const MainPage = () => {
 
   useEffect(() => {
     dispatch(getPosts());
-  }, [dispatch, posts]);
+  }, [dispatch]);
 
   const updateHandler = async (postId, postTitle, postBody) => {
     setShowNotif(true);
@@ -47,6 +47,7 @@ const MainPage = () => {
         method: "PATCH",
         body: JSON.stringify({
           title: postTitle,
+          body: postBody,
         }),
         headers: {
           "Content-type": "application/json; charset=UTF-8",
@@ -80,18 +81,17 @@ const MainPage = () => {
   };
 
   useEffect(() => {
-    if (postDetails.length > 0 && searchDetails.length === 0) {
+    if (postDetails.length > 0 && !searchDetails) {
       setPosts(postDetails.slice(0, 9));
     }
-    if (searchDetails.length > 0) {
+    if (searchDetails) {
       setPosts(searchDetails.slice(0, 9));
     }
   }, [postDetails, searchDetails]);
 
-  const paginationCount =
-    searchDetails.length > 0
-      ? Math.ceil(searchDetails.length / 9)
-      : Math.ceil(postDetails.length / 9);
+  const paginationCount = searchDetails
+    ? Math.ceil(searchDetails.length / 9)
+    : Math.ceil(postDetails.length / 9);
 
   const handleChangePage = (event, newPage) => {
     setpageNumber(newPage);
@@ -114,7 +114,6 @@ const MainPage = () => {
             className={classes.post}
           >
             <Typography variant="h2" align="center">
-              #{post.id}
               {post.title}
             </Typography>
             <Typography align="justify">{post.body}</Typography>

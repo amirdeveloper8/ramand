@@ -32,12 +32,10 @@ const LogIn = () => {
   };
 
   useEffect(() => {
-    setTimeout(() => {
-      if (loginAuth) {
-        history.push("/");
-      }
-    }, 2000);
-  }, [loginAuth]);
+    if (loginAuth) {
+      history.push("/");
+    }
+  });
 
   return (
     <ThemeProvider theme={theme}>

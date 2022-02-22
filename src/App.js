@@ -13,7 +13,6 @@ function App() {
   return (
     <div className="App">
       <Layout />
-      <h1>start ramand</h1>
       <BrowserRouter>
         <Switch>
           <Route path="/login">

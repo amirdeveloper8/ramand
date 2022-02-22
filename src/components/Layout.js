@@ -85,12 +85,12 @@ const Layout = () => {
                   className={classes.search}
                 />
               </Box>
-              {searchDetails.length > 0 && (
+              {searchDetails && (
                 <Typography
                   variant="overline"
                   sx={{ ml: 1, textDecoration: "underline" }}
                 >
-                  Found {searchDetails.length} posts
+                  Found {searchDetails && searchDetails.length} posts
                 </Typography>
               )}
             </Grid>

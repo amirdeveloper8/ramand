@@ -18,19 +18,20 @@ const postsSlice = createSlice({
       title: "Sending message...",
       message: "Your message is on its way!",
     },
-    searchList: [],
+    searchList: null,
+    searchStatus: "No Search",
   },
   reducers: {
     updateHandler(state, action) {
       const newPost = action.payload;
       const postUpdated = state.list.find((item) => item.id === newPost.id);
-      const postSearchUpdated = state.searchList.find(
-        (item) => item.id === newPost.id
-      );
 
       postUpdated.title = newPost.title;
       postUpdated.body = newPost.body;
-      if (postSearchUpdated) {
+      if (state.searchList) {
+        const postSearchUpdated = state.searchList.find(
+          (item) => item.id === newPost.id
+        );
         postSearchUpdated.title = newPost.title;
         postSearchUpdated.body = newPost.body;
       }
@@ -45,13 +46,10 @@ const postsSlice = createSlice({
     searchHandler(state, action) {
       const value = action.payload;
 
-      const result = state.list.filter((item) => item.title.includes(value));
-      if (result.length > 0) {
-        state.searchList = result;
-      }
-      if (value === "") {
-        state.searchList = [];
-      }
+      const result = state.list.filter(
+        (item) => item.title.includes(value) || item.body.includes(value)
+      );
+      state.searchList = result;
     },
   },
   extraReducers: {
