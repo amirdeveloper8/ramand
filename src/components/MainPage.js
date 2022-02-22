@@ -103,6 +103,7 @@ const MainPage = () => {
       <Grid
         container
         justifyContent="space-around"
+        flexWrap="wrap"
         sx={{ width: "90%", m: "auto" }}
       >
         {posts.map((post) => (
